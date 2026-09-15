@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import Image from 'next/image'
 import { useEnquiryTray, type TrayItem } from './EnquiryTrayContext'
 
 /**
@@ -107,9 +108,9 @@ export default function EnquiryTray() {
                   {/* Items list */}
                   {items.map((item) => (
                     <div key={item.productId} className="mb-3 flex items-start gap-3 rounded-md border border-border-subtle p-3">
-                      <div className="h-12 w-12 flex-shrink-0 overflow-hidden rounded bg-base-mist">
+                      <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded bg-base-mist">
                         {item.thumbnail ? (
-                          <img src={item.thumbnail} alt={item.productName} className="h-full w-full object-cover" />
+                          <Image src={item.thumbnail} alt={item.productName} fill className="object-cover" />
                         ) : (
                           <div className="flex h-full w-full items-center justify-center text-xl">📦</div>
                         )}

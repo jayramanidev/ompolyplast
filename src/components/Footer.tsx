@@ -33,7 +33,7 @@ export default function Footer({
             <div className="text-xl font-bold tracking-tight">OM POLYPLAST</div>
             <div className="mt-1 h-0.5 w-24 bg-brand-accent" />
           </div>
-          <p className="mb-6 text-sm leading-relaxed text-brand-sky/80">
+          <p className="mb-6 text-sm leading-relaxed text-brand-sky">
             Manufacturer of BOPP tapes, stretch films, woven/poly bags, and packaging materials in Rajkot, Gujarat. Serving businesses across India.
           </p>
           <div className="flex gap-3">
@@ -53,13 +53,13 @@ export default function Footer({
         <div>
           <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-brand-accent">Quick Links</h3>
           <ul className="space-y-2.5 text-sm">
-            <li><Link href="/" className="text-brand-sky/80 transition-colors hover:text-base-white">Home</Link></li>
-            <li><Link href="/products/tapes" className="text-brand-sky/80 transition-colors hover:text-base-white">Tapes</Link></li>
-            <li><Link href="/products/stretch-films" className="text-brand-sky/80 transition-colors hover:text-base-white">Stretch Films</Link></li>
-            <li><Link href="/products/bags" className="text-brand-sky/80 transition-colors hover:text-base-white">Woven & Poly Bags</Link></li>
-            <li><Link href="/products/other-packaging" className="text-brand-sky/80 transition-colors hover:text-base-white">Other Packaging</Link></li>
-            <li><Link href="/about" className="text-brand-sky/80 transition-colors hover:text-base-white">About Us</Link></li>
-            <li><Link href="/contact" className="text-brand-sky/80 transition-colors hover:text-base-white">Contact</Link></li>
+            <li><Link href="/" className="text-brand-sky transition-colors hover:text-base-white">Home</Link></li>
+            <li><Link href="/products/tapes" className="text-brand-sky transition-colors hover:text-base-white">Tapes</Link></li>
+            <li><Link href="/products/stretch-films" className="text-brand-sky transition-colors hover:text-base-white">Stretch Films</Link></li>
+            <li><Link href="/products/bags" className="text-brand-sky transition-colors hover:text-base-white">Woven & Poly Bags</Link></li>
+            <li><Link href="/products/other-packaging" className="text-brand-sky transition-colors hover:text-base-white">Other Packaging</Link></li>
+            <li><Link href="/about" className="text-brand-sky transition-colors hover:text-base-white">About Us</Link></li>
+            <li><Link href="/contact" className="text-brand-sky transition-colors hover:text-base-white">Contact</Link></li>
           </ul>
         </div>
 
@@ -69,15 +69,15 @@ export default function Footer({
           <ul className="space-y-3 text-sm">
             <li className="flex items-start gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 flex-shrink-0 text-brand-accent"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span className="text-brand-sky/80">{address}</span>
+              <span className="text-brand-sky">{address}</span>
             </li>
             <li className="flex items-center gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0 text-brand-accent"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-              <a href={`tel:${phone}`} className="text-brand-sky/80 hover:text-base-white">{phone}</a>
+              <a href={`tel:${phone}`} className="text-brand-sky hover:text-base-white">{phone}</a>
             </li>
             <li className="flex items-center gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0 text-brand-accent"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              <a href={`mailto:${email}`} className="text-brand-sky/80 hover:text-base-white">{email}</a>
+              <a href={`mailto:${email}`} className="text-brand-sky hover:text-base-white">{email}</a>
             </li>
           </ul>
         </div>
@@ -97,7 +97,7 @@ export default function Footer({
 
       {/* Bottom bar */}
       <div className="border-t border-brand-primary/20">
-        <div className="mx-auto flex max-w-[1280px] flex-col items-center justify-between gap-2 px-6 py-4 text-xs text-brand-sky/60 sm:flex-row">
+        <div className="mx-auto flex max-w-[1280px] flex-col items-center justify-between gap-2 px-6 py-4 text-xs text-brand-sky sm:flex-row">
           <span>© {new Date().getFullYear()} OM Polyplast. All rights reserved.</span>
           <span>GST: {gst} · Rajkot, Gujarat, India</span>
         </div>

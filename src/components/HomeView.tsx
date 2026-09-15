@@ -2,8 +2,11 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Package, ShieldCheck, Truck, Factory, ArrowRight, TrendingUp, Anchor, CheckCircle, ChevronDown } from 'lucide-react'
+
+const MotionImage = motion.create(Image)
 import clsx from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
@@ -38,6 +41,7 @@ const FAQItem = ({ faq, index, isOpen, toggleOpen }: { faq: any, index: number, 
     >
       <button 
         onClick={toggleOpen}
+        aria-expanded={isOpen}
         className="flex w-full items-center justify-between py-6 text-left focus:outline-none group"
       >
         <span className="text-xl font-semibold text-ink-900 transition-colors group-hover:text-brand-primary">{faq.question}</span>
@@ -118,14 +122,15 @@ const HeroCarousel = () => {
   return (
     <div className="relative aspect-[4/3] w-full max-w-2xl overflow-hidden rounded-2xl shadow-2xl border border-base-white/10 ml-auto xl:-mr-12">
       <AnimatePresence initial={false}>
-        <motion.img
+        <MotionImage
           key={currentIndex}
           src={heroImages[currentIndex]}
           initial={{ opacity: 0, scale: 1.05 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 object-cover"
+          fill
           alt="OM Polyplast Packaging Solutions"
         />
       </AnimatePresence>
@@ -135,6 +140,7 @@ const HeroCarousel = () => {
           <button
             key={idx}
             onClick={() => setCurrentIndex(idx)}
+            aria-label={`Go to slide ${idx + 1}`}
             className={cn(
               "h-2 rounded-full transition-all duration-300",
               idx === currentIndex ? "w-8 bg-brand-accent" : "w-2 bg-base-white/50 hover:bg-base-white"
@@ -165,7 +171,7 @@ export default function HomeView({ categories, featuredProducts, stats }: any) {
             transition={{ duration: 2, delay: 0.5, ease: "easeOut" }}
             className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-brand-accent/20 blur-[100px]"
           />
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
+          <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-20 mix-blend-overlay" />
         </div>
 
         <div className="relative mx-auto w-full max-w-[1440px] px-6 py-24 z-10">
@@ -280,12 +286,12 @@ export default function HomeView({ categories, featuredProducts, stats }: any) {
                   "group relative overflow-hidden rounded-2xl bg-base-white shadow-sm border border-border-subtle transition-all hover:shadow-xl",
                   isLarge ? "md:col-span-2 md:row-span-2" : ""
                 )}>
-                  <Link href={`/products/${cat.slug}`} className="absolute inset-0 z-10" />
+                  <Link href={`/products/${cat.slug}`} className="absolute inset-0 z-10" aria-label={`View ${cat.name} category`} />
                   
                   {/* Background Image */}
                   <div className="absolute inset-0 bg-base-mist overflow-hidden">
                     {thumb ? (
-                      <img src={thumb} alt={cat.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                      <Image src={thumb} alt={cat.name} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
                     ) : (
                       <div className="w-full h-full bg-brand-sky/20 flex items-center justify-center">
                          <Package className="h-24 w-24 text-brand-primary/20" />
@@ -369,7 +375,7 @@ export default function HomeView({ categories, featuredProducts, stats }: any) {
                     <Link href={`/products/${catSlug}/${product.slug}`} className="group block">
                       <div className="relative aspect-square overflow-hidden rounded-xl bg-base-white border border-border-subtle mb-4">
                         {thumb ? (
-                          <img src={thumb} alt={product.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                          <Image src={thumb} alt={product.name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
                         ) : (
                           <div className="flex h-full w-full items-center justify-center bg-base-mist">
                             <Package className="h-12 w-12 text-ink-600/30" />
@@ -411,7 +417,7 @@ export default function HomeView({ categories, featuredProducts, stats }: any) {
       <section className="relative overflow-hidden bg-brand-deep py-24 md:py-32">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-[-50%] right-[-10%] w-[800px] h-[800px] rounded-full bg-brand-primary/20 blur-[150px]" />
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay" />
+          <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-10 mix-blend-overlay" />
         </div>
         <div className="relative mx-auto max-w-[1280px] px-6 text-center z-10">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={stagger} className="max-w-4xl mx-auto">

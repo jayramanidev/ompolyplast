@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 /**
  * Header with mega-menu — design.md §4, §5.1
@@ -89,9 +90,9 @@ export default function Header({ categories, phone = '+91-9876543210', whatsapp 
                       href={`/products/${cat.slug}`}
                       className="group flex items-center gap-3 rounded-md p-3 transition-colors hover:bg-base-mist"
                     >
-                      <div className="h-14 w-14 flex-shrink-0 overflow-hidden rounded-md bg-base-mist">
+                      <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-md bg-base-mist">
                         {cat.heroImage ? (
-                          <img src={cat.heroImage.url} alt={cat.heroImage.alt || cat.name} className="h-full w-full object-cover" />
+                          <Image src={cat.heroImage.url} alt={cat.heroImage.alt || cat.name} fill className="object-cover" />
                         ) : (
                           <div className="flex h-full w-full items-center justify-center text-2xl">📦</div>
                         )}
