@@ -122,17 +122,23 @@ const HeroCarousel = () => {
   return (
     <div className="relative aspect-[4/3] w-full max-w-2xl overflow-hidden rounded-2xl shadow-2xl border border-base-white/10 ml-auto xl:-mr-12">
       <AnimatePresence initial={false}>
-        <MotionImage
+        <motion.div
           key={currentIndex}
-          src={heroImages[currentIndex]}
           initial={{ opacity: 0, scale: 1.05 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="absolute inset-0 object-cover"
-          fill
-          alt="OM Polyplast Packaging Solutions"
-        />
+          className="absolute inset-0"
+        >
+          <Image
+            src={heroImages[currentIndex]}
+            className="object-cover"
+            fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            priority={currentIndex === 0}
+            alt="OM Polyplast Packaging Solutions"
+          />
+        </motion.div>
       </AnimatePresence>
       <div className="absolute inset-0 bg-gradient-to-tr from-brand-deep/60 via-transparent to-transparent pointer-events-none" />
       <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 gap-2 z-20">
@@ -291,7 +297,13 @@ export default function HomeView({ categories, featuredProducts, stats }: any) {
                   {/* Background Image */}
                   <div className="absolute inset-0 bg-base-mist overflow-hidden">
                     {thumb ? (
-                      <Image src={thumb} alt={cat.name} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                      <Image 
+                        src={thumb} 
+                        alt={cat.name} 
+                        fill 
+                        sizes={isLarge ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 100vw, 33vw"}
+                        className="object-cover transition-transform duration-700 group-hover:scale-105" 
+                      />
                     ) : (
                       <div className="w-full h-full bg-brand-sky/20 flex items-center justify-center">
                          <Package className="h-24 w-24 text-brand-primary/20" />
@@ -375,7 +387,13 @@ export default function HomeView({ categories, featuredProducts, stats }: any) {
                     <Link href={`/products/${catSlug}/${product.slug}`} className="group block">
                       <div className="relative aspect-square overflow-hidden rounded-xl bg-base-white border border-border-subtle mb-4">
                         {thumb ? (
-                          <Image src={thumb} alt={product.name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                          <Image 
+                            src={thumb} 
+                            alt={product.name} 
+                            fill 
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                            className="object-cover transition-transform duration-500 group-hover:scale-105" 
+                          />
                         ) : (
                           <div className="flex h-full w-full items-center justify-center bg-base-mist">
                             <Package className="h-12 w-12 text-ink-600/30" />

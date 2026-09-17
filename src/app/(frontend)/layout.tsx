@@ -1,5 +1,20 @@
 import React from 'react'
 import type { Metadata } from 'next'
+import { IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google'
+
+const ibmPlexSans = IBM_Plex_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-sans',
+  display: 'swap',
+})
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-mono',
+  display: 'swap',
+})
 import { getPayloadClient } from '@/lib/payload'
 import { buildOrganizationSchema } from '@/lib/schema'
 import Header from '@/components/Header'
@@ -62,7 +77,7 @@ export default async function FrontendLayout({ children }: { children: React.Rea
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
         />
       </head>
-      <body className="min-h-screen bg-base-white text-ink-900 font-sans antialiased">
+      <body className={`min-h-screen bg-base-white text-ink-900 font-sans antialiased ${ibmPlexSans.variable} ${ibmPlexMono.variable}`}>
         <EnquiryTrayProvider>
           <Header
             categories={categories}
