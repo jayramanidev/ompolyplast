@@ -56,9 +56,13 @@ export default function ProductCard({
             className="object-cover transition-transform duration-300 group-hover:scale-105"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center text-5xl text-brand-primary/20">
-            📦
-          </div>
+          <Image 
+            src={`https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=800&q=80`}
+            alt={name} 
+            fill 
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-105 opacity-80" 
+          />
         )}
       </Link>
 

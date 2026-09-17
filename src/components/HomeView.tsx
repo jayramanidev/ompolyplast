@@ -141,15 +141,15 @@ const HeroCarousel = () => {
         </motion.div>
       </AnimatePresence>
       <div className="absolute inset-0 bg-gradient-to-tr from-brand-deep/60 via-transparent to-transparent pointer-events-none" />
-      <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 gap-2 z-20">
+      <div className="absolute bottom-10 left-1/2 flex -translate-x-1/2 gap-4 z-20">
         {heroImages.map((_, idx) => (
           <button
             key={idx}
             onClick={() => setCurrentIndex(idx)}
             aria-label={`Go to slide ${idx + 1}`}
             className={cn(
-              "h-2 rounded-full transition-all duration-300",
-              idx === currentIndex ? "w-8 bg-brand-accent" : "w-2 bg-base-white/50 hover:bg-base-white"
+              "h-4 rounded-full transition-all duration-300",
+              idx === currentIndex ? "w-12 bg-brand-accent shadow-[0_0_10px_rgba(255,215,0,0.5)]" : "w-4 bg-base-white/60 hover:bg-base-white hover:scale-110"
             )}
           />
         ))}
@@ -247,7 +247,7 @@ export default function HomeView({ categories, featuredProducts, stats }: any) {
                 <span className="text-5xl md:text-7xl font-bold tracking-tighter text-brand-deep font-mono">
                   {stat.value}
                 </span>
-                <span className="mt-2 text-sm md:text-base font-medium text-ink-600 uppercase tracking-widest">
+                <span className="mt-2 text-sm md:text-base font-medium text-ink-600">
                   {stat.label}
                 </span>
               </motion.div>
@@ -280,17 +280,14 @@ export default function HomeView({ categories, featuredProducts, stats }: any) {
 
           <motion.div 
             initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={stagger}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {categories.slice(0, 5).map((cat: any, i: number) => {
-              // Create bento layout: first item spans 2 cols, 2 rows. Others are 1x1.
-              const isLarge = i === 0
+            {categories.slice(0, 6).map((cat: any, i: number) => {
               const thumb = cat.heroImage?.url
               
               return (
                 <motion.div key={cat.id} variants={fadeInUp} className={cn(
-                  "group relative overflow-hidden rounded-2xl bg-base-white shadow-sm border border-border-subtle transition-all hover:shadow-xl",
-                  isLarge ? "md:col-span-2 md:row-span-2" : ""
+                  "group relative overflow-hidden rounded-2xl bg-base-white shadow-sm border border-border-subtle transition-all hover:shadow-xl aspect-[4/3]"
                 )}>
                   <Link href={`/products/${cat.slug}`} className="absolute inset-0 z-10" aria-label={`View ${cat.name} category`} />
                   
@@ -301,13 +298,19 @@ export default function HomeView({ categories, featuredProducts, stats }: any) {
                         src={thumb} 
                         alt={cat.name} 
                         fill 
-                        sizes={isLarge ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 100vw, 33vw"}
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        priority={i < 3}
                         className="object-cover transition-transform duration-700 group-hover:scale-105" 
                       />
                     ) : (
-                      <div className="w-full h-full bg-brand-sky/20 flex items-center justify-center">
-                         <Package className="h-24 w-24 text-brand-primary/20" />
-                      </div>
+                      <Image 
+                        src={`https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=800&q=80`}
+                        alt={cat.name}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        priority={i < 3}
+                        className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80"
+                      />
                     )}
                     {/* Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-ink-900/90 via-ink-900/20 to-transparent opacity-80" />
@@ -316,7 +319,7 @@ export default function HomeView({ categories, featuredProducts, stats }: any) {
                   {/* Content */}
                   <div className="absolute bottom-0 left-0 w-full p-8 flex flex-col justify-end">
                     <div className="transform transition-transform duration-500 group-hover:-translate-y-2">
-                      <h3 className={cn("font-bold text-base-white mb-2", isLarge ? "text-4xl" : "text-2xl")}>
+                      <h3 className="font-bold text-base-white mb-2 text-2xl">
                         {cat.name}
                       </h3>
                       <p className="text-base-white/80 line-clamp-2 mb-4 max-w-md">
@@ -377,13 +380,13 @@ export default function HomeView({ categories, featuredProducts, stats }: any) {
               </motion.h2>
             </motion.div>
 
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={stagger} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={stagger} className="flex flex-wrap justify-center gap-8">
               {featuredProducts.map((product: any) => {
                 const catSlug = typeof product.category === 'object' ? product.category.slug : 'products'
                 const thumb = typeof product.images?.[0] === 'object' ? product.images[0]?.url : undefined
                 
                 return (
-                  <motion.div key={product.id} variants={fadeInUp}>
+                  <motion.div key={product.id} variants={fadeInUp} className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)]">
                     <Link href={`/products/${catSlug}/${product.slug}`} className="group block">
                       <div className="relative aspect-square overflow-hidden rounded-xl bg-base-white border border-border-subtle mb-4">
                         {thumb ? (
@@ -395,9 +398,13 @@ export default function HomeView({ categories, featuredProducts, stats }: any) {
                             className="object-cover transition-transform duration-500 group-hover:scale-105" 
                           />
                         ) : (
-                          <div className="flex h-full w-full items-center justify-center bg-base-mist">
-                            <Package className="h-12 w-12 text-ink-600/30" />
-                          </div>
+                          <Image 
+                            src={`https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=800&q=80`}
+                            alt={product.name} 
+                            fill 
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                            className="object-cover transition-transform duration-500 group-hover:scale-105 opacity-80" 
+                          />
                         )}
                         <div className="absolute inset-0 bg-brand-deep/0 transition-colors duration-300 group-hover:bg-brand-deep/5" />
                       </div>
