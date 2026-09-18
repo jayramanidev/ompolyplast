@@ -64,7 +64,7 @@ export default function EnquiryTray() {
       {!isOpen && itemCount > 0 && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-24 z-50 flex items-center gap-2 rounded-full bg-brand-primary px-5 py-3 font-semibold text-base-white shadow-modal transition-transform hover:scale-105"
+          className="fixed bottom-6 right-24 z-50 hidden items-center gap-2 rounded-full bg-brand-primary px-5 py-3 font-semibold text-base-white shadow-modal transition-transform hover:scale-105 lg:flex"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
           Enquiry ({itemCount})
@@ -75,7 +75,7 @@ export default function EnquiryTray() {
       {isOpen && (
         <div className="fixed inset-0 z-50 flex justify-end">
           <div className="absolute inset-0 bg-ink-900/40" onClick={() => setIsOpen(false)} />
-          <div className="relative z-10 flex h-full w-full max-w-lg flex-col bg-base-white shadow-modal" style={{ transition: 'var(--transition-drawer)' }}>
+          <div className="relative z-10 flex h-full w-full flex-col bg-base-white shadow-modal sm:max-w-lg" style={{ transition: 'var(--transition-drawer)' }}>
             {/* Header */}
             <div className="flex items-center justify-between border-b border-border-subtle px-6 py-4">
               <h2 className="text-lg font-semibold text-ink-900">

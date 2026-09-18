@@ -21,6 +21,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import WhatsAppFAB from '@/components/WhatsAppFAB'
 import EnquiryTray from '@/components/EnquiryTray'
+import MobileBottomBar from '@/components/MobileBottomBar'
 import { EnquiryTrayProvider } from '@/components/EnquiryTrayContext'
 import '@/app/globals.css'
 
@@ -84,7 +85,7 @@ export default async function FrontendLayout({ children }: { children: React.Rea
             phone={siteSettings?.contact?.phone}
             whatsapp={siteSettings?.contact?.whatsapp}
           />
-          <main>{children}</main>
+          <main className="mobile-bottom-spacer">{children}</main>
           <Footer
             phone={siteSettings?.contact?.phone}
             email={siteSettings?.contact?.email}
@@ -95,6 +96,10 @@ export default async function FrontendLayout({ children }: { children: React.Rea
           />
           <WhatsAppFAB phone={siteSettings?.contact?.whatsapp} />
           <EnquiryTray />
+          <MobileBottomBar
+            phone={siteSettings?.contact?.phone}
+            whatsapp={siteSettings?.contact?.whatsapp}
+          />
         </EnquiryTrayProvider>
       </body>
     </html>
